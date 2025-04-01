@@ -28,6 +28,9 @@
     },
     "publishedat": {
       "type": "date"
+    },
+    "transactionByMonth": {
+      "type": "json"
     }
   }
 }

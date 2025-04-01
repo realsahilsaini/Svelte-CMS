@@ -1,29 +1,69 @@
 <script>
-  import { onMount } from 'svelte';
-  import { fetchPostById } from '$lib/api';
-  import { marked } from 'marked';
-  
+  import { onMount, tick } from "svelte";
+  import { fetchPostById } from "$lib/api";
+  import { marked } from "marked";
+  import Chart from "chart.js/auto";
+
   export let data;
 
-  
   let post = null;
   let isLoading = true;
   let error = null;
-  
+  let transactionChartCanvas;
+
+  async function createChart() {
+    const months = Object.keys(post?.transactionByMonth);
+    // console.log("Months:", months);
+    const values = Object.values(post?.transactionByMonth);
+    // console.log("Values:", values);
+
+    const ctx = transactionChartCanvas.getContext("2d");
+    // console.log("CTX:", ctx);
+
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: months,
+        datasets: [
+          {
+            label: "Transactions Value (in $K)",
+            data: values,
+            backgroundColor: "cyan",
+            borderColor: "black",
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
+  }
+
   onMount(async () => {
     try {
-      console.log(data);
+      // console.log(data);
       post = await fetchPostById(data.id);
       isLoading = false;
+
+      await tick();
+
+      await createChart();
     } catch (err) {
+      console.error("Error fetching post:", err);
       error = err.message;
       isLoading = false;
     }
   });
+
 </script>
 
 <svelte:head>
-  <title>{post ? post.title : 'Loading Post'} | My CSM Application</title>
+  <title>{post ? post.title : "Loading Post"} | My CSM Application</title>
 </svelte:head>
 
 <div class="post-container">
@@ -43,23 +83,31 @@
         </div>
       {/if}
     </div>
-    
+
     {#if post.image?.url}
       <div class="post-image-container">
-        <img 
-          src={`http://localhost:1337${post.image?.url}`} 
+        <img
+          src={`http://localhost:1337${post.image?.url}`}
           alt={post.title}
           class="post-image"
         />
       </div>
     {/if}
-    
+
     <div class="post-content">
-      {@html marked(post.content[0].children[0].text || '')}
+      {@html marked(post.content[0].children[0].text || "")}
     </div>
-    
+
+    <!-- Transaction Chart -->
+    <canvas bind:this={transactionChartCanvas} width="400" height="200"
+    ></canvas>
+
     <div class="post-footer">
-      <a href="/posts" class="mx-auto bg-gray-800 text-white px-1.5 py-2 rounded-md">Back to Posts</a>
+      <a
+        href="/posts"
+        class="mx-auto bg-gray-800 text-white px-1.5 py-2 rounded-md"
+        >Back to Customers</a
+      >
     </div>
   {/if}
 </div>
@@ -68,45 +116,45 @@
   .error {
     color: red;
   }
-  
+
   .post-container {
     max-width: 800px;
     margin: 0 auto;
   }
-  
+
   .post-header {
     margin-bottom: 1.5rem;
   }
-  
+
   .post-date {
     color: #666;
   }
-  
+
   .post-image-container {
     margin-bottom: 2rem;
   }
-  
+
   .post-image {
     width: 100%;
     max-height: 400px;
     object-fit: cover;
     border-radius: 4px;
   }
-  
+
   .post-content {
     line-height: 1.8;
     margin-bottom: 2rem;
   }
-  
+
   .post-content :global(h2) {
     margin-top: 1.5rem;
     margin-bottom: 1rem;
   }
-  
+
   .post-content :global(p) {
     margin-bottom: 1rem;
   }
-  
+
   .post-footer {
     margin-top: 2rem;
     padding-top: 1rem;
