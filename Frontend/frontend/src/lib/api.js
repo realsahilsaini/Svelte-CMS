@@ -32,7 +32,7 @@ export const fetchPosts = async () => {
 export const fetchPostById = async (id) => {
   try {
     const response = await api.get(`/api/posts/${id}?populate=*`);
-    console.log(response.data.data);
+    // console.log(response.data.data);
     return response.data.data;
   } catch (error) {
     console.error(`Error fetching post with id ${id}:`, error);
@@ -44,6 +44,7 @@ export const fetchPostById = async (id) => {
 //To create a new post in the Strapi API.
 export const createPost = async (data) => {
   try {
+    console.log('Creating post with data:', data);
     const response = await api.post('/api/posts', { data });
     return response.data.data;
   } catch (error) {

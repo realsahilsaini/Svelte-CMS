@@ -6,11 +6,33 @@
   let posts = [];
   let isLoading = true;
   let error = null;
-  
+  let totalSales = 0;
   // Fetch posts on mount of the component 
   onMount(async () => {
     try {
       posts = await fetchPosts();
+      console.log(posts);
+
+      // Calculate total sales from posts
+      posts.forEach(customer => {
+        //This returns obejct with monthly sales with key as month and value as sales. Now get the sum of all the values.
+        const monthlySales = customer.transactionByMonth;
+        
+        // Get the sum of all values in the object
+        totalSales = Object.values(monthlySales).reduce((acc, value) => {
+          return acc + value;
+        }, 0);
+
+        totalSales = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+        }).format(totalSales);
+    
+        // console.log(totalSales);
+        
+      //  console.log(customer.transactionByMonth)
+      });
+
       isLoading = false;
     } catch (err) {
       error = err.message;
@@ -23,9 +45,30 @@
   <title>Home | My CSM Application</title>
 </svelte:head>
 
-<section class="mt-8 bg-gray-300 px-4 py-2 text-center rounded-lg">
-  <h2 class="font-bold">Welcome to the CSM Application</h2>
-  <p class="font-light text-xs">This is a simple customer management system built with Svelte and Strapi.</p>
+<section class="mt-8 border border-gray-400 px-4 py-2 text-center rounded-lg">
+  <h2 class="font-bold text-2xl">Welcome to the CSM Application</h2>
+  <p class="font-light text-sm">This is a simple customer management system built with Svelte and Strapi.</p>
+</section>
+
+
+<section class="grid grid-cols-2 gap-2 p-4 h-42 border border-gray-400 rounded-lg mt-8">
+
+  <div class="shadow-[inset_0px_0px_6px_3px_rgba(149,_157,_165,_0.2)] p-4 rounded-lg">
+    <h2 class="text-2xl font-light">Total Customer</h2>
+    <p class="font-bold mt-4 text-2xl">
+      {posts.length}
+    </p>
+  </div>
+  
+  <div class="shadow-[inset_0px_0px_6px_3px_rgba(149,_157,_165,_0.2)] p-4 rounded-lg">
+    <h2 class="text-2xl font-light">Total Sales</h2>
+    <p class="font-bold mt-4 text-2xl">
+      {totalSales}
+    </p>
+  </div>
+
+  
+
 </section>
 
 <section class="mt-8">

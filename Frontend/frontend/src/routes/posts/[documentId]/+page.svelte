@@ -84,7 +84,7 @@
       {/if}
     </div>
 
-    {#if post.image?.url}
+    <!-- {#if post.image?.url}
       <div class="post-image-container">
         <img
           src={`http://localhost:1337${post.image?.url}`}
@@ -92,7 +92,7 @@
           class="post-image"
         />
       </div>
-    {/if}
+    {/if} -->
 
     <div class="post-content">
       {@html marked(post.content[0].children[0].text || "")}

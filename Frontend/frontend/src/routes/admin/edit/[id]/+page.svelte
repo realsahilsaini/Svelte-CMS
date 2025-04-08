@@ -21,7 +21,8 @@
         publishedAt: result.publishedAt 
           ? new Date(result.publishedAt).toISOString().split('T')[0] 
           : new Date().toISOString().split('T')[0],
-        image: result.image.url
+        transactionByMonth: result.transactionByMonth,
+        // image: result.image.url
       };
 
       // console.log(post.image);
@@ -38,32 +39,33 @@
       const { post: updatedPost } = event.detail;
       
       // Handle image upload if there is one
-      let imageId = null;
-      if (updatedPost.image && typeof updatedPost.image !== 'object') {
-        // It's an existing image reference
-        imageId = updatedPost.image.data?.id;
-      } else if (updatedPost.image) {
-        // It's a new file
-        const formData = new FormData();
-        formData.append('files', updatedPost.image);
+      // let imageId = null;
+      // if (updatedPost.image && typeof updatedPost.image !== 'object') {
+      //   // It's an existing image reference
+      //   imageId = updatedPost.image.data?.id;
+      // } else if (updatedPost.image) {
+      //   // It's a new file
+      //   const formData = new FormData();
+      //   formData.append('files', updatedPost.image);
         
-        const response = await fetch('http://localhost:1337/api/upload', {
-          method: 'POST',
-          body: formData
-        });
+      //   const response = await fetch('http://localhost:1337/api/upload', {
+      //     method: 'POST',
+      //     body: formData
+      //   });
         
-        const uploadResult = await response.json();
-        if (uploadResult && uploadResult.length > 0) {
-          imageId = uploadResult[0].id;
-        }
-      }
+      //   const uploadResult = await response.json();
+      //   if (uploadResult && uploadResult.length > 0) {
+      //     imageId = uploadResult[0].id;
+      //   }
+      // }
       
       // Update post
       const postData = {
         title: updatedPost.title,
         content: updatedPost.content,
         publishedAt: updatedPost.publishedAt ? new Date(updatedPost.publishedAt).toISOString() : null,
-        image: imageId || undefined
+        transactionByMonth: updatedPost.transactionByMonth,
+        // image: imageId || undefined
       };
       
       await updatePost(data.id, postData);

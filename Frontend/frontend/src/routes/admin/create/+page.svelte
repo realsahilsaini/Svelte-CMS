@@ -34,9 +34,18 @@
       // Create post
       const postData = {
         title: post.title,
-        content: post.content,
+        content: [{
+          type: 'paragraph',
+          children: [
+            {
+              type: 'text',
+              text: post.content
+            }
+          ]
+        }],
         publishedAt: post.publishedAt ? new Date(post.publishedAt).toISOString() : null,
-        image: imageId ? imageId : undefined
+        transactionByMonth: post.transactionByMonth,
+        // image: imageId ? imageId : undefined
       };
 
       console.log('Post data:', postData);
