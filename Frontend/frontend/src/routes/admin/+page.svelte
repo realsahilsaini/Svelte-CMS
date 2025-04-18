@@ -39,7 +39,7 @@
   <title>Admin Dashboard | My CSM Application</title>
 </svelte:head>
 
-<div class="mt-8">
+<div class="mt-8 container mx-auto">
   <h2 class="font-bold">Admin Dashboard</h2>
   
   <div class="font-bold bg-emerald-800 w-fit text-white px-1.5 py-2 rounded-md">
@@ -47,7 +47,7 @@
   </div>
   
   <div class="mt-4">
-    <h3 class="font-bold">Manage Customer</h3>
+    <h3 class="font-bold mb-2">Manage Customer</h3>
     
     {#if isLoading}
       <p>Loading customer...</p>
@@ -57,7 +57,7 @@
       <p>No customer found. Create your first customer!</p>
     {:else}
       <table class="admin-table">
-        <thead>
+        <thead class="dark:bg-gray-700">
           <tr>
             <th>Title</th>
             <th>Published</th>
@@ -99,14 +99,10 @@
     border-bottom: 1px solid #ddd;
   }
   
-  .admin-table th {
-    background-color: #f5f5f5;
-  }
-  
-  .actions {
+  /* .actions {
     display: flex;
     gap: 0.5rem;
-  }
+  } */
   
   .button.small, button.small {
     padding: 0.25rem 0.5rem;

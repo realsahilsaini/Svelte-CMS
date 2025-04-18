@@ -1,4 +1,5 @@
 <script>
+  import DarkModeToggle from '$lib/components/DarkModeToggle.svelte';
   import '../app.css';
 </script>
 
@@ -8,21 +9,24 @@
   <header>
     <div class="container">
       <h1>Customer Management System</h1>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/posts">Customers</a>
-        <a href="/admin">Admin</a>
-      </nav>
+      <div class="flex justify-between items-center gap-2">
+        <nav>
+          <a href="/">Home</a>
+          <a href="/posts">Customers</a>
+          <a href="/admin">Admin</a>
+        </nav>
+        <DarkModeToggle/>
+      </div>
     </div>
   </header>
   
-  <main class="container">
+  <main class=" dark:bg-gray-900 dark:text-neutral-100">
     <slot />
   </main>
   
-  <footer>
+  <footer class="dark:bg-gray-900 border-t border-gray-300 dark:border-gray-700 dark:text-gray-600 font-extralight">
     <div class="container">
-      <p style="text-align: center;">&copy; {new Date().getFullYear()} My CSM Application</p>
+      <p style="text-align: center;">&copy; {new Date().getFullYear()} Sahil Saini</p>
     </div>
   </footer>
 </div>
@@ -68,7 +72,7 @@
   }
   
   footer {
-    background-color: #f5f5f5;
+    /* background-color: #f5f5f5; */
     padding: 1rem 0;
     margin-top: auto;
   }

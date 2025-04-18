@@ -22,7 +22,8 @@
   <title>All Posts | My CSM Application</title>
 </svelte:head>
 
-<h2 class="font-bold mt-8 mb-4">All Customers</h2>
+<div class="container mx-auto">
+  <h2 class="font-bold mt-8 mb-4">All Customers</h2>
 
 {#if isLoading}
   <!-- <p>Loading customers...</p> -->
@@ -38,9 +39,9 @@
 {:else if posts.length === 0}
   <p>No customer found. Create some in the admin section!</p>
 {:else}
-  <div class="posts-grid">
+  <div class=" posts-grid">
     {#each posts as post}
-      <div class="card bg-stone-200 py-2 px-2 rounded-md border border-gray-300">
+      <div class="card bg-stone-200 dark:bg-slate-700 py-2 px-2 rounded-md border border-gray-300 dark:border dark:border-neutral-400">
         <h3>{post.title}</h3>
         {#if post.image?.url}
           <img 
@@ -53,15 +54,16 @@
           {@html marked(post.content[0].children[0].text?.substring(0, 100) + '...' || '')}
         </div>
         {#if post.publishedAt}
-          <div class="post-date">
+          <div class="post-date dark:text-gray-400">
             Published: {new Date(post.updatedAt).toLocaleDateString()}
           </div>
         {/if}
-        <a href={`/posts/${post.documentId}`} class="font-bold underline text-blue-500">Read More</a>
+        <a href={`/posts/${post.documentId}`} class="font-bold underline text-blue-500 dark:text-blue-300">Read More</a>
       </div>
     {/each}
   </div>
 {/if}
+</div>
 
 <style>
   .error {
@@ -87,7 +89,7 @@
   
   .post-date {
     font-size: 0.875rem;
-    color: #666;
+    /* color: #666; */
     margin-bottom: 0.5rem;
   }
 

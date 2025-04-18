@@ -50,7 +50,7 @@
       post = await fetchPostById(data.id);
       isLoading = false;
 
-      await tick();
+      await tick(); // Wait for DOM updates before creating the chart 
 
       await createChart();
     } catch (err) {
@@ -76,9 +76,9 @@
     <a href="/posts" class="button">Back to Posts</a>
   {:else}
     <div class="post-header">
-      <h2>{post.title}</h2>
+      <h2 class="text-2xl">{post.title}</h2>
       {#if post.publishedAt}
-        <div class="post-date">
+        <div class="text-sm text-gray-500">
           Published: {new Date(post.publishedAt).toLocaleDateString()}
         </div>
       {/if}
@@ -99,13 +99,13 @@
     </div>
 
     <!-- Transaction Chart -->
-    <canvas bind:this={transactionChartCanvas} width="400" height="200"
+    <canvas bind:this={transactionChartCanvas} width="400" height="200" class="dark:bg-gray-700 rounded-md p-2 dark:text-white"
     ></canvas>
 
     <div class="post-footer">
       <a
         href="/posts"
-        class="mx-auto bg-gray-800 text-white px-1.5 py-2 rounded-md"
+        class="mx-auto bg-gray-800 dark:border dark:border-neutral-400 text-white px-1.5 py-2 rounded-md"
         >Back to Customers</a
       >
     </div>
@@ -124,10 +124,6 @@
 
   .post-header {
     margin-bottom: 1.5rem;
-  }
-
-  .post-date {
-    color: #666;
   }
 
   .post-image-container {
