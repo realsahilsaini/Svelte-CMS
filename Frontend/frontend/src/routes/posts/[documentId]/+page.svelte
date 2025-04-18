@@ -66,7 +66,7 @@
   <title>{post ? post.title : "Loading Post"} | My CSM Application</title>
 </svelte:head>
 
-<div class="post-container">
+<div class="post-container pt-12">
   {#if isLoading}
     <p>Loading post...</p>
   {:else if error}

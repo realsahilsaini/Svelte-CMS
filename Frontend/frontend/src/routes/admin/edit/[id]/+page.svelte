@@ -3,6 +3,7 @@
   import { goto } from '$app/navigation';
   import PostForm from '$lib/components/PostForm.svelte';
   import { fetchPostById, updatePost } from '$lib/api';
+  import { text } from '@sveltejs/kit';
   
   export let data;
   
@@ -13,6 +14,7 @@
   onMount(async () => {
     try {
       const result = await fetchPostById(data.id);
+      console.log(result);
       
       // Format the data for the form
       post = {
@@ -62,7 +64,15 @@
       // Update post
       const postData = {
         title: updatedPost.title,
-        content: updatedPost.content,
+        content: [{
+          children:[
+            {
+              text: updatedPost.content,
+              type: "text"
+            }
+          ],
+          type: "paragraph"
+        }],
         publishedAt: updatedPost.publishedAt ? new Date(updatedPost.publishedAt).toISOString() : null,
         transactionByMonth: updatedPost.transactionByMonth,
         // image: imageId || undefined
