@@ -99,7 +99,7 @@
     </div>
 
     <!-- Transaction Chart -->
-    <canvas bind:this={transactionChartCanvas} width="400" height="200" class="dark:bg-gray-700 rounded-md p-2 dark:text-white"
+    <canvas bind:this={transactionChartCanvas} width="400" height="200" class="dark:bg-gray-700/50 rounded-md p-2 dark:text-white"
     ></canvas>
 
     <div class="post-footer">

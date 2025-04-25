@@ -29,7 +29,7 @@
         }
       }
       
-      console.log(post)
+      // console.log(post)
 
       // Create post
       const postData = {
