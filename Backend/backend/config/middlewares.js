@@ -5,10 +5,12 @@ module.exports = [
   {
     name: 'strapi::cors',
     config: {
-      origin: ['https://ahy-cms.vercel.app/'],   // <-- Your Vercel frontend domain
-      methods: ['GET', 'POST', 'PUT', 'DELETE'],
-      credentials: true
-    }
+      enabled: true,
+      origin: ['https://ahy-cms.vercel.app'],  // Your Vercel frontend domain EXACTLY
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+      headers: '*',
+      keepHeaderOnError: true,
+    },
   },
   'strapi::poweredBy',
   'strapi::query',
