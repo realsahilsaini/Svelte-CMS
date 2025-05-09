@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Get the Strapi URL from the environment variables
-const strapiUrl = import.meta.env.PUBLIC_STRAPI_URL;
+const strapiUrl = 'https://svelte-cms-production.up.railway.app/';
 
 // Create an axios instance with some default settings
 export const api = axios.create({
