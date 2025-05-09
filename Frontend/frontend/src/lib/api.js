@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Get the Strapi URL from the environment variables
-const strapiUrl = import.meta.env.PUBLIC_STRAPI_URL || 'http://localhost:1337';
+const strapiUrl = import.meta.env.PUBLIC_STRAPI_URL;
 
 // Create an axios instance with some default settings
 export const api = axios.create({
