@@ -20,8 +20,8 @@
       post = {
         title: result.title,
         content: result.content[0].children[0].text || '',
-        publishedAt: result.publishedAt 
-          ? new Date(result.publishedAt).toISOString().split('T')[0] 
+        publishedat: result.publishedat 
+          ? new Date(result.publishedat).toISOString().split('T')[0] 
           : new Date().toISOString().split('T')[0],
         transactionByMonth: result.transactionByMonth,
         // image: result.image.url
@@ -60,6 +60,8 @@
       //     imageId = uploadResult[0].id;
       //   }
       // }
+
+      console.log('Updated Post:', updatedPost);
       
       // Update post
       const postData = {
@@ -73,7 +75,7 @@
           ],
           type: "paragraph"
         }],
-        publishedAt: updatedPost.publishedAt ? new Date(updatedPost.publishedAt).toISOString() : null,
+        publishedat: updatedPost.publishedat,
         transactionByMonth: updatedPost.transactionByMonth,
         // image: imageId || undefined
       };

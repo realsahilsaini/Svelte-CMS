@@ -178,7 +178,7 @@ async function importArticles() {
         cover,
         blocks: updatedBlocks,
         // Make sure it's not a draft
-        publishedAt: Date.now(),
+        publishedat: Date.now(),
       },
     });
   }
@@ -193,7 +193,7 @@ async function importGlobal() {
       ...global,
       favicon,
       // Make sure it's not a draft
-      publishedAt: Date.now(),
+      publishedat: Date.now(),
       defaultSeo: {
         ...global.defaultSeo,
         shareImage,
@@ -211,7 +211,7 @@ async function importAbout() {
       ...about,
       blocks: updatedBlocks,
       // Make sure it's not a draft
-      publishedAt: Date.now(),
+      publishedat: Date.now(),
     },
   });
 }

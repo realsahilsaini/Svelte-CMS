@@ -18,7 +18,7 @@
       november: null,
       december: null
     },
-    publishedAt: new Date().toISOString().split('T')[0]
+    publishedat: new Date().toISOString().split('T')[0]
   };
   export let isEditing = false;
   
@@ -133,11 +133,11 @@
   </div>
   
   <div class="form-group">
-    <label for="publishedAt">Publish Date</label>
+    <label for="publishedat">Publish Date</label>
     <input 
       type="date" 
-      id="publishedAt" 
-      bind:value={post.publishedAt}
+      id="publishedat" 
+      bind:value={post.publishedat}
       class="border border-gray-300 p-2 w-fit rounded-md"
     />
   </div>

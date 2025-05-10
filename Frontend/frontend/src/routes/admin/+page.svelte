@@ -69,14 +69,14 @@
             <tr>
               <td>{post.title}</td>
               <td>
-                {post.publishedAt 
-                  ? new Date(post.publishedAt).toLocaleDateString() 
+                {post.publishedat 
+                  ? new Date(post.publishedat).toLocaleDateString() 
                   : 'Draft'}
               </td>
               <td class="actions">
                 <a href={`/posts/${post.documentId}`} class="button small">View</a>
                 <a href={`/admin/edit/${post.documentId}`} class="button small primary">Edit</a>
-                <button class="small danger text-white" on:click={() => handleDelete(post.documentId)}>Delete</button>
+                <button class="small danger text-white cursor-pointer" on:click={() => handleDelete(post.documentId)}>Delete</button>
               </td>
             </tr>
           {/each}

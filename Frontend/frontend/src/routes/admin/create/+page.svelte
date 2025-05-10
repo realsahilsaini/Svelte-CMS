@@ -43,7 +43,7 @@
             }
           ]
         }],
-        publishedAt: post.publishedAt ? new Date(post.publishedAt).toISOString() : null,
+        publishedat: post.publishedat ? new Date(post.publishedat).toISOString() : null,
         transactionByMonth: post.transactionByMonth,
         // image: imageId ? imageId : undefined
       };

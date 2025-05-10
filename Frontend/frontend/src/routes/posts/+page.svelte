@@ -53,7 +53,7 @@
         <div class="post-excerpt">
           {@html marked(post.content[0].children[0].text?.substring(0, 100) + '...' || '')}
         </div>
-        {#if post.publishedAt}
+        {#if post.publishedat}
           <div class="post-date dark:text-gray-400">
             Published: {new Date(post.updatedAt).toLocaleDateString()}
           </div>

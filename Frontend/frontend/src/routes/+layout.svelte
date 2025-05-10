@@ -8,7 +8,7 @@
 <div class="app">
   <header>
     <div class="container">
-      <h1>Customer Management System</h1>
+      <a href="/" class="font-bold border-2 py-1 px-2 border-stone-500 rounded">Customer Management System</a>
       <div class="flex justify-between items-center gap-2">
         <nav>
           <a href="/">Home</a>

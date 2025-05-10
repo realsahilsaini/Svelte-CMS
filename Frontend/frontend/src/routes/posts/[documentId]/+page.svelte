@@ -77,9 +77,9 @@
   {:else}
     <div class="post-header">
       <h2 class="text-2xl">{post.title}</h2>
-      {#if post.publishedAt}
+      {#if post.publishedat}
         <div class="text-sm text-gray-500">
-          Published: {new Date(post.publishedAt).toLocaleDateString()}
+          Published: {new Date(post.publishedat).toLocaleDateString()}
         </div>
       {/if}
     </div>
